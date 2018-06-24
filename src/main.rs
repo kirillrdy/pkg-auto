@@ -7,6 +7,10 @@ fn remove_packages(packages: Vec<String>) {
     Command::new("pkg").arg("remove").args(packages).status().unwrap();
 }
 
+fn install_packages(packages: Vec<String>) {
+    Command::new("pkg").arg("install").args(packages).status().unwrap();
+}
+
 //TODO return for main, to avoid unwrapping
 fn main() {
     let output = Command::new("pkg").arg("prime-list").output().unwrap();
@@ -31,4 +35,5 @@ fn main() {
     let to_be_removed = installed.difference(&desired);
     println!("{:?}", to_be_removed);
     remove_packages(to_be_removed.map(|i| String::from(*i)).collect());
+    install_packages(to_be_installed.map(|i| String::from(*i)).collect());
 }
