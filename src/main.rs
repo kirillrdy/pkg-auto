@@ -2,6 +2,7 @@ use std::process::Command;
 use std::collections::HashSet;
 use std::fs::File;
 use std::io::Read;
+use std::env;
 
 fn remove_packages(packages: Vec<String>) {
     Command::new("pkg").arg("remove").args(packages).status().unwrap();
@@ -26,7 +27,10 @@ fn main() {
 
     let mut content = String::new();
     //TODO hardcoded path
-    let mut file = File::open("/home/kirillvr/pkg_prime_list").unwrap();
+    let path = env::home_dir().unwrap();
+    let path  = path.join("pkg_prime_list");
+    println!("{}", path.display());
+    let mut file = File::open(path).unwrap();
     file.read_to_string(&mut content).unwrap();
 
     let mut desired = HashSet::new();
