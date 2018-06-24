@@ -1,0 +1,6 @@
+[package]
+name = "pkg-auto"
+version = "0.1.0"
+authors = ["Kirill Radzikhovskyy <kirillrdy@gmail.com>"]
+
+[dependencies]
